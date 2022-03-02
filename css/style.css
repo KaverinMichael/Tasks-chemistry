@@ -240,13 +240,10 @@ border-radius: 12px;
 .list__view{
     border: 1px solid #fbd03b;
     width: 95%;
-    min-height: 150px;
+    height: 70px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
-    overflow-x: hidden;
-    
 }
 
 .list__view__topic {
@@ -257,21 +254,13 @@ border-radius: 12px;
     
 }
 .list__view__topic p {
-    margin-top: 5px;
+    margin-top: 15px;
     color: white;
     font-size:20px;
     text-align: center;
-    
-    
 }
 
 
-.list__view__task {
-    /* border: 1px solid black; */
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 24px;
-}
 
 
 

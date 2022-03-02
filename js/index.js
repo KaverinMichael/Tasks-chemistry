@@ -129,6 +129,7 @@ function start() {
     btnTwo.disabled = false;
     btnThree.disabled = false;
     btnFour.disabled = false;
+    question.style.backgroundColor = '#f65649';
 }
 
 question.addEventListener('click', start, options);
@@ -207,4 +208,4 @@ function next() {
 btnNext.addEventListener('click', next)
 
 
-
+console.log(question)
