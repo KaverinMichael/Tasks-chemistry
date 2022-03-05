@@ -1,5 +1,6 @@
 let tasks =[
-    {   question: "Как атом имеет 11 электронов?",
+    {   theme: '1',
+        question: "Как атом имеет 11 электронов?",
         answears: [
             'Na',
             'Li',
@@ -8,7 +9,8 @@ let tasks =[
         ],
         rightAnswer: 1,
     },
-    {   question: "Как атом имеет 6 электронов?",
+    {   theme: '1',
+        question: "Как атом имеет 6 электронов?",
         answears: [
             'N',
             'P',
@@ -17,7 +19,8 @@ let tasks =[
         ],
         rightAnswer: 3,
     },
-    {   question: "Как атом имеет 22 электронов?",
+    {   theme: '2',
+        question: "Как атом имеет 22 электронов?",
         answears: [
             'O',
             'K',
@@ -26,7 +29,8 @@ let tasks =[
         ],
         rightAnswer: 4,
     },
-    {   question: "Как атом имеет 4 электронов?",
+    {   theme: '2',
+        question: "Как атом имеет 4 электронов?",
         answears: [
             'Sc',
             'Be',
@@ -35,61 +39,63 @@ let tasks =[
         ],
         rightAnswer: 2,
     },
-    {   question: "Как атом имеет 9 электронов?",
-        answears: [
-            'W',
-            'V',
-            'F',
-            'Li',
-        ],
-        rightAnswer: 3,
-    },
-    {   question: "Как атом имеет 13 электронов?",
-        answears: [
-            'Al',
-            'Ca',
-            'I',
-            'Cl',
-        ],
-        rightAnswer: 1,
-    },
-    {   question: "Как атом имеет 25 электронов?",
-        answears: [
-            'Ba',
-            'Mn',
-            'Fe',
-            'Cs',
-        ],
-        rightAnswer: 2,
-    },
-    {   question: "Как атом имеет 16 электронов?",
-        answears: [
-            'K',
-            'S',
-            'Ti',
-            'Br',
-        ],
-        rightAnswer: 2,
-    },
-    {   question: "Как атом имеет 10 электронов?",
-        answears: [
-            'Zn',
-            'Kr',
-            'Cu',
-            'Ne',
-        ],
-        rightAnswer: 4,
-    },
-    {   question: "Как атом имеет 56 электронов?",
-        answears: [
-            'Ba',
-            'I',
-            'S',
-            'V',
-        ],
-        rightAnswer: 1,
-    },
+    // {   question: "Как атом имеет 9 электронов?",
+    //     answears: [
+    //         'W',
+    //         'V',
+    //         'F',
+    //         'Li',
+    //     ],
+    //     rightAnswer: 3,
+    // },
+    // {   question: "Как атом имеет 13 электронов?",
+    //     answears: [
+    //         'Al',
+    //         'Ca',
+    //         'I',
+    //         'Cl',
+    //     ],
+    //     rightAnswer: 1,
+    // },
+    // {   question: "Как атом имеет 25 электронов?",
+    //     answears: [
+    //         'Ba',
+    //         'Mn',
+    //         'Fe',
+    //         'Cs',
+    //     ],
+    //     rightAnswer: 2,
+    // },
+    // {   question: "Как атом имеет 16 электронов?",
+    //     answears: [
+    //         'K',
+    //         'S',
+    //         'Ti',
+    //         'Br',
+    //     ],
+    //     rightAnswer: 2,
+    // },
+    // {   question: "Как атом имеет 10 электронов?",
+    //     answears: [
+    //         'Zn',
+    //         'Kr',
+    //         'Cu',
+    //         'Ne',
+    //     ],
+    //     rightAnswer: 4,
+    // },
+    // {   question: "Как атом имеет 56 электронов?",
+    //     answears: [
+    //         'Ba',
+    //         'I',
+    //         'S',
+    //         'V',
+    //     ],
+    //     rightAnswer: 1,
+    // },
 ]
+
+
 // out
 let outTask = document.querySelector('.task__view__outq');
 //yes/no
@@ -97,7 +103,7 @@ let result = document.querySelector('.task__view');
 
 
 // choiseTask
-let question = document.getElementById('list__view__task__1.1');
+let question = document.querySelectorAll('.list__view')
 
 // buttons 
 let btnOne = document.querySelector('.task__choise__one');
@@ -106,6 +112,16 @@ let btnThree = document.querySelector('.task__choise__three');
 let btnFour = document.querySelector('.task__choise__four');
 let buttons = document.querySelectorAll('.btn');
 let btnNext = document.querySelector('.task__next__btn');
+
+//begin state 
+let taskParant = document.querySelector('.task');
+let taskChoise = document.querySelector('.task__choise');
+let taskBtnNextChoice = document.querySelector('.task__next');
+taskParant.style.backgroundColor = 'rgba(128, 128, 128, 0)';
+outTask.innerHTML = 'Выберите задание';
+taskChoise.style.opacity = 0;
+taskBtnNextChoice.style.opacity = 0;
+
 
 // logics
 let arrScore = [];
@@ -119,21 +135,45 @@ btnThree.disabled = true;
 btnFour.disabled = true;
 btnNext.disabled = true;
 
-function start() {
-    outTask.innerHTML = tasks[indexQuestion].question;
-    btnOne.innerHTML = tasks[indexQuestion].answears[0];
-    btnTwo.innerHTML = tasks[indexQuestion].answears[1];
-    btnThree.innerHTML = tasks[indexQuestion].answears[2];
-    btnFour.innerHTML = tasks[indexQuestion].answears[3];
-    btnOne.disabled = false;
-    btnTwo.disabled = false;
-    btnThree.disabled = false;
-    btnFour.disabled = false;
-    question.style.backgroundColor = '#f65649';
+
+let arrTasks = [];
+let btnAttr;
+
+function innerTask() {
+    outTask.innerHTML = arrTasks[indexQuestion].question;
+    btnOne.innerHTML = arrTasks[indexQuestion].answears[0];
+    btnTwo.innerHTML = arrTasks[indexQuestion].answears[1];
+    btnThree.innerHTML = arrTasks[indexQuestion].answears[2];
+    btnFour.innerHTML = arrTasks[indexQuestion].answears[3];
 }
 
-question.addEventListener('click', start, options);
 
+function choiseTaskForbanc() {
+    for(let i=0; i<tasks.length; i++) {
+        if(btnAttr == tasks[i].theme) {
+            arrTasks.push(tasks[i])
+            
+        } 
+    }
+    innerTask()
+}
+
+
+question.forEach(function(btn){
+    btn.addEventListener('click', function (){
+        btnAttr = btn.dataset.value;
+        taskParant.style.backgroundColor = 'rgba(128, 128, 128, .9)';
+        taskChoise.style.opacity = 1;
+        taskBtnNextChoice.style.opacity = 1;
+        btnOne.disabled = false;
+        btnTwo.disabled = false;
+        btnThree.disabled = false;
+        btnFour.disabled = false;
+        
+        choiseTaskForbanc()
+        
+    }, options)
+})
 
 
 buttons.forEach(function(btn) {
@@ -149,6 +189,7 @@ buttons.forEach(function(btn) {
             btnFour.disabled = true;
             btnNext.disabled = false;
             arrScore.push(1);
+            score += 1;
             
         }else{
             result.style.backgroundColor = 'red';
@@ -167,13 +208,9 @@ buttons.forEach(function(btn) {
 })
 
 
-
 function final() {
-    for(let i=0; i<arrScore.length; i++){
-        if(arrScore[i] == 1){
-            score += 1;
-        }
-    }
+    taskChoise.style.opacity = 0;
+    taskBtnNextChoice.style.opacity = 1;
     btnNext.disabled = true;
     result.style.backgroundColor = '#fff';
     outTask.classList.remove('task__view__result')
@@ -185,19 +222,15 @@ function final() {
 }
 
 
-function next() {
-    if(indexQuestion  == (tasks.length-1)) {
+function nextTask() {
+    if(indexQuestion  == (arrTasks.length-1)) {
         final();
         return;
     }
     indexQuestion += 1;
     result.style.backgroundColor = '#fff';
     outTask.classList.remove('task__view__result')
-    outTask.innerHTML = tasks[indexQuestion].question;
-    btnOne.innerHTML = tasks[indexQuestion].answears[0];
-    btnTwo.innerHTML = tasks[indexQuestion].answears[1];
-    btnThree.innerHTML = tasks[indexQuestion].answears[2];
-    btnFour.innerHTML = tasks[indexQuestion].answears[3];
+    innerTask()
     btnOne.disabled = false;
     btnTwo.disabled = false;
     btnThree.disabled = false;
@@ -205,7 +238,7 @@ function next() {
     btnNext.disabled = true;
 }
 
-btnNext.addEventListener('click', next)
+btnNext.addEventListener('click', nextTask)
 
 
-console.log(question)
+
