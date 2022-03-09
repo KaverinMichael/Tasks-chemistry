@@ -113,31 +113,64 @@ let btnFour = document.querySelector('.task__choise__four');
 let buttons = document.querySelectorAll('.btn');
 let btnNext = document.querySelector('.task__next__btn');
 
-//begin state 
+
 let taskParant = document.querySelector('.task');
 let taskChoise = document.querySelector('.task__choise');
 let taskBtnNextChoice = document.querySelector('.task__next');
-taskParant.style.backgroundColor = 'rgba(128, 128, 128, 0)';
-outTask.innerHTML = 'Выберите задание';
-taskChoise.style.opacity = 0;
-taskBtnNextChoice.style.opacity = 0;
+// ------------logics--------------------------------
+
+//BtnChoice
+function btnChoiceOff(){
+    btnOne.disabled = true;
+    btnTwo.disabled = true;
+    btnThree.disabled = true;
+    btnFour.disabled = true;
+    taskChoise.style.visibility = 'hidden';
+}
+
+function btnChoiceOn(){
+    btnOne.disabled = false;
+    btnTwo.disabled = false;
+    btnThree.disabled = false;
+    btnFour.disabled = false;
+    taskChoise.style.visibility = 'visible';
+}
+
+function btnChoiceAndNextChoiceOff(){
+    taskChoise.style.visibility = 'hidden';
+    taskBtnNextChoice.style.visibility = 'hidden';
+}
+//begin state 
+function beginState() {
+    taskParant.style.backgroundColor = 'rgba(128, 128, 128, 0)';
+    outTask.innerHTML = 'Выберите задание';
+    taskBtnNextChoice.style.visibility = 'hidden';
+    btnChoiceOff()
+}
+
+beginState();
 
 
-// logics
+
+
+
+
+
 let arrScore = [];
 let score = 0;
 const options = {"once":true};
 let indexQuestion = 0;
 
-btnOne.disabled = true;
-btnTwo.disabled = true;
-btnThree.disabled = true;
-btnFour.disabled = true;
-btnNext.disabled = true;
+
 
 
 let arrTasks = [];
 let btnAttr;
+
+
+
+
+
 
 function innerTask() {
     outTask.innerHTML = arrTasks[indexQuestion].question;
@@ -163,18 +196,18 @@ question.forEach(function(btn){
     btn.addEventListener('click', function (){
         btnAttr = btn.dataset.value;
         taskParant.style.backgroundColor = 'rgba(128, 128, 128, .9)';
-        taskChoise.style.opacity = 1;
-        taskBtnNextChoice.style.opacity = 1;
-        btnOne.disabled = false;
-        btnTwo.disabled = false;
-        btnThree.disabled = false;
-        btnFour.disabled = false;
-        
+        btnChoiceOn()
         choiseTaskForbanc()
         
     }, options)
 })
 
+
+
+
+
+
+//------------------------------------------------------------------
 
 buttons.forEach(function(btn) {
 
@@ -183,24 +216,20 @@ buttons.forEach(function(btn) {
             result.style.backgroundColor = 'green';
             outTask.classList.add('task__view__result')
             outTask.innerHTML = 'Верно'
-            btnOne.disabled = true;
-            btnTwo.disabled = true;
-            btnThree.disabled = true;
-            btnFour.disabled = true;
+            btnChoiceOff()
             btnNext.disabled = false;
             arrScore.push(1);
             score += 1;
+            taskBtnNextChoice.style.visibility = 'visible';
             
         }else{
             result.style.backgroundColor = 'red';
             outTask.classList.add('task__view__result')
             outTask.innerHTML=('Неверно');
-            btnOne.disabled = true;
-            btnTwo.disabled = true;
-            btnThree.disabled = true;
-            btnFour.disabled = true;
+            btnChoiceOff()
             btnNext.disabled = false;
             arrScore.push(0);
+            taskBtnNextChoice.style.visibility = 'visible';
             
         }
     },)
@@ -209,9 +238,7 @@ buttons.forEach(function(btn) {
 
 
 function final() {
-    taskChoise.style.opacity = 0;
-    taskBtnNextChoice.style.opacity = 1;
-    btnNext.disabled = true;
+    taskBtnNextChoice.style.visibility = 'hidden';
     result.style.backgroundColor = '#fff';
     outTask.classList.remove('task__view__result')
     outTask.innerHTML = `Вы ответили правильно на ${score} из ${tasks.length} вопросов`;
@@ -231,11 +258,8 @@ function nextTask() {
     result.style.backgroundColor = '#fff';
     outTask.classList.remove('task__view__result')
     innerTask()
-    btnOne.disabled = false;
-    btnTwo.disabled = false;
-    btnThree.disabled = false;
-    btnFour.disabled = false;
-    btnNext.disabled = true;
+    btnChoiceOn()
+    taskBtnNextChoice.style.visibility = 'hidden';
 }
 
 btnNext.addEventListener('click', nextTask)
