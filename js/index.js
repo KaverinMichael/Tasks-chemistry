@@ -39,60 +39,66 @@ let tasks =[
         ],
         rightAnswer: 2,
     },
-    // {   question: "Как атом имеет 9 электронов?",
-    //     answears: [
-    //         'W',
-    //         'V',
-    //         'F',
-    //         'Li',
-    //     ],
-    //     rightAnswer: 3,
-    // },
-    // {   question: "Как атом имеет 13 электронов?",
-    //     answears: [
-    //         'Al',
-    //         'Ca',
-    //         'I',
-    //         'Cl',
-    //     ],
-    //     rightAnswer: 1,
-    // },
-    // {   question: "Как атом имеет 25 электронов?",
-    //     answears: [
-    //         'Ba',
-    //         'Mn',
-    //         'Fe',
-    //         'Cs',
-    //     ],
-    //     rightAnswer: 2,
-    // },
-    // {   question: "Как атом имеет 16 электронов?",
-    //     answears: [
-    //         'K',
-    //         'S',
-    //         'Ti',
-    //         'Br',
-    //     ],
-    //     rightAnswer: 2,
-    // },
-    // {   question: "Как атом имеет 10 электронов?",
-    //     answears: [
-    //         'Zn',
-    //         'Kr',
-    //         'Cu',
-    //         'Ne',
-    //     ],
-    //     rightAnswer: 4,
-    // },
-    // {   question: "Как атом имеет 56 электронов?",
-    //     answears: [
-    //         'Ba',
-    //         'I',
-    //         'S',
-    //         'V',
-    //     ],
-    //     rightAnswer: 1,
-    // },
+    {   theme: '3',
+        question: "Как атом имеет 9 электронов?",
+        answears: [
+            'W',
+            'V',
+            'F',
+            'Li',
+        ],
+        rightAnswer: 3,
+    },
+    {   theme: '3',
+        question: "Как атом имеет 13 электронов?",
+        answears: [
+            'Al',
+            'Ca',
+            'I',
+            'Cl',
+        ],
+        rightAnswer: 1,
+    },   
+    {   theme: '4',
+        question: "Как атом имеет 25 электронов?",
+        answears: [
+            'Ba',
+            'Mn',
+            'Fe',
+            'Cs',
+        ],
+        rightAnswer: 2,
+    },
+    {   theme: '4',
+        question: "Как атом имеет 16 электронов?",
+        answears: [
+            'K',
+            'S',
+            'Ti',
+            'Br',
+        ],
+        rightAnswer: 2,
+    },
+    {   theme: '5',
+        question: "Как атом имеет 10 электронов?",
+        answears: [
+            'Zn',
+            'Kr',
+            'Cu',
+            'Ne',
+        ],
+        rightAnswer: 4,
+    },
+    {   theme: '5',
+        question: "Как атом имеет 56 электронов?",
+        answears: [
+            'Ba',
+            'I',
+            'S',
+            'V',
+        ],
+        rightAnswer: 1,
+    },
 ]
 
 
@@ -117,6 +123,8 @@ let btnNext = document.querySelector('.task__next__btn');
 let taskParant = document.querySelector('.task');
 let taskChoise = document.querySelector('.task__choise');
 let taskBtnNextChoice = document.querySelector('.task__next');
+
+
 // ------------logics--------------------------------
 
 //BtnChoice
@@ -150,119 +158,104 @@ function beginState() {
 
 beginState();
 
-
-
-
-
-
-
-let arrScore = [];
-let score = 0;
-const options = {"once":true};
-let indexQuestion = 0;
-
-
-
-
-let arrTasks = [];
-let btnAttr;
-
-
-
-
-
-
-function innerTask() {
-    outTask.innerHTML = arrTasks[indexQuestion].question;
-    btnOne.innerHTML = arrTasks[indexQuestion].answears[0];
-    btnTwo.innerHTML = arrTasks[indexQuestion].answears[1];
-    btnThree.innerHTML = arrTasks[indexQuestion].answears[2];
-    btnFour.innerHTML = arrTasks[indexQuestion].answears[3];
+function interfaceOff () {
+    let list = document.querySelector('.list');
+    list.style.display = 'none';
+}
+function interfaceOn () {
+    let list = document.querySelector('.list');
+    list.style.display = 'flex';
 }
 
 
-function choiseTaskForbanc() {
-    for(let i=0; i<tasks.length; i++) {
-        if(btnAttr == tasks[i].theme) {
-            arrTasks.push(tasks[i])
-            
-        } 
-    }
-    innerTask()
-}
 
 
 question.forEach(function(btn){
     btn.addEventListener('click', function (){
-        btnAttr = btn.dataset.value;
+
         taskParant.style.backgroundColor = 'rgba(128, 128, 128, .9)';
-        btnChoiceOn()
-        choiseTaskForbanc()
+
+        let score = 0;
+        let indexQuestion = 0;
+        let arrTasks = [];
         
-    }, options)
-})
-
-
-
-
-
-
-//------------------------------------------------------------------
-
-buttons.forEach(function(btn) {
-
-    btn.addEventListener('click', function () {
-        if(btn.value == tasks[indexQuestion].rightAnswer){
-            result.style.backgroundColor = 'green';
-            outTask.classList.add('task__view__result')
-            outTask.innerHTML = 'Верно'
-            btnChoiceOff()
-            btnNext.disabled = false;
-            arrScore.push(1);
-            score += 1;
-            taskBtnNextChoice.style.visibility = 'visible';
-            
-        }else{
-            result.style.backgroundColor = 'red';
-            outTask.classList.add('task__view__result')
-            outTask.innerHTML=('Неверно');
-            btnChoiceOff()
-            btnNext.disabled = false;
-            arrScore.push(0);
-            taskBtnNextChoice.style.visibility = 'visible';
-            
+        let valueBtn = function(){
+                outTask.innerHTML = arrTasks[indexQuestion].question;
+                btnOne.innerHTML = arrTasks[indexQuestion].answears[0];
+                btnTwo.innerHTML = arrTasks[indexQuestion].answears[1];
+                btnThree.innerHTML = arrTasks[indexQuestion].answears[2];
+                btnFour.innerHTML = arrTasks[indexQuestion].answears[3];
         }
-    },)
+
+
+        let innerTask = function () {
+            let btnAttr = btn.dataset.value;
+
+            for(let i=0; i<tasks.length; i++) {
+                if(btnAttr == tasks[i].theme) {
+                    arrTasks.push(tasks[i])
+                
+                } 
+            }
+        }
+        innerTask();
+        valueBtn();
+
+
+
+        btnChoiceOn()
+        interfaceOff ()
+
+        buttons.forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                if(btn.value == arrTasks[indexQuestion].rightAnswer){
+                    result.style.backgroundColor = 'green';
+                    outTask.classList.add('task__view__result')
+                    outTask.innerHTML = 'Верно'
+                    btnChoiceOff()
+                    score += 1;
+                    taskBtnNextChoice.style.visibility = 'visible';
+                    indexQuestion += 1
+                    
+                }else{
+                    result.style.backgroundColor = 'red';
+                    outTask.classList.add('task__view__result')
+                    outTask.innerHTML=('Неверно');
+                    btnChoiceOff()
+                    taskBtnNextChoice.style.visibility = 'visible';
+                    indexQuestion += 1
+                    
+                }
+            })
+
+        })
+
+        btnNext.onclick = (function(){
+                if(indexQuestion  == arrTasks.length ) {
+                    let final = function(){
+                            taskBtnNextChoice.style.visibility = 'hidden';
+                            result.style.backgroundColor = '#fff';
+                            outTask.classList.remove('task__view__result')
+                            outTask.innerHTML = `Вы ответили правильно на ${score} из ${arrTasks.length} вопросов`;
+                            interfaceOn();
+                    }
+                    final();
+                    return;
+        
+                }else{
+
+                    result.style.backgroundColor = '#fff';
+                    outTask.classList.remove('task__view__result')
+                    valueBtn()
+                    btnChoiceOn()
+                    taskBtnNextChoice.style.visibility = 'hidden';
+                }
+        })
+   
+   
+    })
 
 })
-
-
-function final() {
-    taskBtnNextChoice.style.visibility = 'hidden';
-    result.style.backgroundColor = '#fff';
-    outTask.classList.remove('task__view__result')
-    outTask.innerHTML = `Вы ответили правильно на ${score} из ${tasks.length} вопросов`;
-    btnOne.innerHTML = '';
-    btnTwo.innerHTML = '';
-    btnThree.innerHTML = '';
-    btnFour.innerHTML = '';
-}
-
-
-function nextTask() {
-    if(indexQuestion  == (arrTasks.length-1)) {
-        final();
-        return;
-    }
-    indexQuestion += 1;
-    result.style.backgroundColor = '#fff';
-    outTask.classList.remove('task__view__result')
-    innerTask()
-    btnChoiceOn()
-    taskBtnNextChoice.style.visibility = 'hidden';
-}
-
-btnNext.addEventListener('click', nextTask)
 
 
 
