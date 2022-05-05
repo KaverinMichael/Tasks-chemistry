@@ -224,14 +224,14 @@ border-radius: 12px;
 .list {
     width: 33vw;
     /* min-height: 100vh; */
-    max-height:850px;
+    height: 90vh;
     margin-right: 10px;
     background-color:rgba(128, 128, 128, .9);
     display: flex;
     flex-direction: column;
     align-items: center;
     
-    overflow: scroll;
+    overflow: scroll; 
     overflow-x: hidden;
    
     
@@ -240,7 +240,8 @@ border-radius: 12px;
 .list__view{
     border: 1px solid #fbd03b;
     width: 95%;
-    height: 70px;
+    min-height: 70px;
+    max-height: 70px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -273,16 +274,18 @@ border-radius: 12px;
     margin-bottom: 20px;
     margin-top: 20px;
     
+    
 }
 .list__view__logo__flex{
     color: #fff;
     font-size: 24px;
     font-weight: 700;
     font-family: Arial, Helvetica, sans-serif; 
+    
 }
 .task{
     background-color: rgba(128, 128, 128, .9);
-    width: 95%;
+    width: 100%;
     height: 90vh;
     display: flex;
     
@@ -390,3 +393,102 @@ border-radius: 12px;
     font-weight: bold;
 }
 
+
+/*---------------------------------------------*/
+/*---------------------------------------------*/
+/*---------------------------------------------*/
+/*---------------------------------------------*/
+/*--------------Lectures-------------------------------*/
+
+/* .listOfTopic__wrapper {
+    border: 1px solid black;
+    background-color: rgba(128, 128, 128, 0.9);
+    max-width: 750px;
+    height: 89%;
+    
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.topicHeader {
+    
+    height: 40px;
+    color: black;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 20px;
+}
+.listOfTopicview__flex {
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.topicview {
+    color:#fff;
+    width: 100%;
+    padding-top: 8px;
+    margin-top: 5px;
+    height: 30px;
+    border: 1px solid #fbd03b;
+} */
+
+.topic-wrapper {
+
+    margin-top: 20px;
+    height: 89%;
+    display: flex;
+    align-items: center;
+    
+}
+.topic__choices {
+    background-color: rgba(128, 128, 128, 0.95);
+    height: 100%;
+    width: 20%;
+    margin-left: 5px;
+}
+.topic__choices__flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.topicview-header {
+    margin-bottom: 15px;
+    font-size: 20px;
+
+}
+.topicview {
+    font-size: 18px;
+    margin-top: 15px;
+    border: 1px solid #fbd03b;
+    height: 28px;
+    width: 80%;
+    text-align: center;
+    padding-top: 4px;
+}
+.topicPdf {
+    
+    
+    height: 100%;
+    width: 80%;
+}
+
+.divNextTopic{
+    color: #fbd03b;;
+    font-size: 18px;
+    font-weight: 700;
+    
+    height: 29px;
+    text-align: center;
+}
+
+.pdfBtn{
+    background-color: #f65649;
+    color: black;
+    font-size: 23px;
+    font-weight: 700;
+    width: 30%;
+    border-radius: 12px;
+}
